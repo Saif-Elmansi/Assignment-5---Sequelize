@@ -3,7 +3,6 @@ import { Comment } from "../../DB/models/comment.model.js";
 import { User } from "../../DB/models/user.model.js";
 import { Post } from "../../DB/models/post.model.js";
 
-// 1. Create a bulk of Comments
 export const createBulkCommentsService = async (req, res) => {
   try {
     const commentsData = req.body.comments || req.body;
@@ -16,7 +15,6 @@ export const createBulkCommentsService = async (req, res) => {
   }
 };
 
-// 2. Update comment content by ID (Owner only)
 export const updateCommentService = async (req, res) => {
   try {
     const { commentId } = req.params;
@@ -42,7 +40,6 @@ export const updateCommentService = async (req, res) => {
   }
 };
 
-// 3. Find or create a comment
 export const findOrCreateCommentService = async (req, res) => {
   try {
     const { postId, userId, content } = req.body;
@@ -58,7 +55,6 @@ export const findOrCreateCommentService = async (req, res) => {
   }
 };
 
-// 4. Search comments containing a word and count them
 export const searchCommentsService = async (req, res) => {
   try {
     const { word } = req.query;
@@ -81,7 +77,6 @@ export const searchCommentsService = async (req, res) => {
   }
 };
 
-// 5. Retrieve the 3 most recent comments for a post
 export const getNewestCommentsService = async (req, res) => {
   try {
     const { postId } = req.params;
@@ -98,7 +93,6 @@ export const getNewestCommentsService = async (req, res) => {
   }
 };
 
-// 6. Get specific comment by PK with User and Post information
 export const getCommentDetailsService = async (req, res) => {
   try {
     const { id } = req.params;

@@ -3,7 +3,6 @@ import { User } from "../../DB/models/user.model.js";
 import { Comment } from "../../DB/models/comment.model.js";
 import { sequelize } from "../../DB/connection.js";
 
-// 1. Create new Post (using new instance and save)
 export const createPostService = async (req, res) => {
     try {
         const { title, content, userId } = req.body;
@@ -17,7 +16,6 @@ export const createPostService = async (req, res) => {
     }
 };
 
-// 2. Delete a post by its id (Ensure only owner can delete)
 export const deletePostService = async (req, res) => {
     try {
         const { postId } = req.params;
@@ -34,7 +32,6 @@ export const deletePostService = async (req, res) => {
                 .json({ message: "You are not authorized to delete this post." });
         }
 
-        // هنا هيمسح Soft Delete تلقائياً لأن paranoid: true شغالة
         await post.destroy();
 
         return res.status(200).json({ message: "Post deleted." });
@@ -43,7 +40,6 @@ export const deletePostService = async (req, res) => {
     }
 };
 
-// 3. Retrieve all posts with user details and comments
 export const getPostsDetailsService = async (req, res) => {
     try {
         const posts = await Post.findAll({
@@ -66,7 +62,6 @@ export const getPostsDetailsService = async (req, res) => {
     }
 };
 
-// 4. Retrieve all posts and count comments
 export const getPostsWithCommentCountService = async (req, res) => {
     try {
         const posts = await Post.findAll({

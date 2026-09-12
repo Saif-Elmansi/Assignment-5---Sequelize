@@ -1,6 +1,5 @@
 import { User } from "../../DB/models/user.model.js";
 
-// 1. Signup using build & save
 export const signupService = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -19,16 +18,14 @@ export const signupService = async (req, res) => {
   }
 };
 
-// 2. Create or Update based on PK with skip validation
 export const upsertUserService = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, email, password, role } = req.body;
 
-    // upsert بيبحث بالـ PK (id)، ولو موجود بيعمل update، لو مش موجود بيعمل create
     await User.upsert(
       { id, name, email, password, role },
-      { validate: false } // skip validation option
+      { validate: false }
     );
 
     return res
@@ -39,7 +36,6 @@ export const upsertUserService = async (req, res) => {
   }
 };
 
-// 3. Find user by email
 export const getUserByEmailService = async (req, res) => {
   try {
     const { email } = req.query;
@@ -55,7 +51,6 @@ export const getUserByEmailService = async (req, res) => {
   }
 };
 
-// 4. Get user by PK excluding 'role'
 export const getUserByIdService = async (req, res) => {
   try {
     const { id } = req.params;

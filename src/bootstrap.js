@@ -7,10 +7,8 @@ import postRouter from "./Modules/Post/Post.controller.js";
 import commentRouter from "./Modules/Comment/Comment.controller.js";
 
 const bootstrap = async (app) => {
-  // 1. Parsing Middleware
   app.use(express.json());
 
-  // 2. فحص ومزامنة الداتابيز
   await checkDB();
 
 
